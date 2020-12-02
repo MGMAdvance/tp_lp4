@@ -19,7 +19,7 @@ interface IProjetoRepository{
     public static function getById($id): Pessoa;
 }
 
-interface IAtividadeRepository{
+interface IPPRepository{
 	public static function insert(): void;
     public static function update(Pessoa $pessoa): void;
     public static function delete($id): void;

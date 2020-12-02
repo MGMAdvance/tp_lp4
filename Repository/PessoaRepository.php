@@ -19,13 +19,8 @@ class PessoaRepository
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
             $stmt = $pdo->prepare('INSERT INTO pessoas (nome,telefone) VALUES (:nome,:telefone)');
-            $stmt->bindParam(':nome', $nome);
-            $stmt->bindParam(':telefone', $telefone);
-
-            $values = $pessoa->toJson();
-
-            $nome = $values['nome'];
-            $telefone = $values['telefone'];
+            $stmt->bindParam(':nome', $pessoa->getNome());
+            $stmt->bindParam(':telefone', $pessoa->getTelefone());
 
             $stmt->execute();
         } catch (PDOException $ex) {
