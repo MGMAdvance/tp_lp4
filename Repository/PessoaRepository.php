@@ -18,9 +18,12 @@ class PessoaRepository
 
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
+            $nome = $pessoa->getNome();
+            $telefone = $pessoa->getTelefone();
+
             $stmt = $pdo->prepare('INSERT INTO pessoas (nome,telefone) VALUES (:nome,:telefone)');
-            $stmt->bindParam(':nome', $pessoa->getNome());
-            $stmt->bindParam(':telefone', $pessoa->getTelefone());
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':telefone', $telefone);
 
             $stmt->execute();
         } catch (PDOException $ex) {
@@ -92,15 +95,13 @@ class PessoaRepository
 
             $stmt = $pdo->prepare('UPDATE pessoa SET nome=:nome, telefone=:tel WHERE id=:id');
 
+            $id = $pessoa->getId();
+            $nome = $pessoa->getNome();
+            $telefone = $pessoa->getTelefone();
+
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':tel', $telefone);
-
-            $values = $pessoa->toJson();
-
-            $id = $values['id'];
-            $nome = $values['nome'];
-            $telefone = $values['telefone'];
 
             $stmt->execute();
         } catch (PDOException $pex) {
