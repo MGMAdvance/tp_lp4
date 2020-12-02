@@ -1,0 +1,38 @@
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+footer {
+  margin-top: auto;
+}
+
+#banner {
+  background-color: #85b8ff;
+}
+
+#footer {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background-color: #d3d3d3;
+}
+
+#footer p {
+  margin-bottom: 0px;
+}
+
+table thead {
+  background-color: #bbbbbb;
+}
+
+.img-logo img {
+  /* width: 300px; */
+  margin-top: -100px;
+  margin-bottom: -60px;
+}
