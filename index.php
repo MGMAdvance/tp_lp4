@@ -1,15 +1,4 @@
-<?php
-spl_autoload_register(function ($class_name) {
-    include $class_name . '.php';
-});
-
-use Repository\PessoaRepository;
-
-$pessoa = PessoaRepository::getAll();
-
-var_dump($pessoa[0]->toJson());
-require "components/header.php";
-?>
+<?php require "components/header.php";?>
 
 <div class="container content mt-5 mb-5">
   <div class="row d-flex justify-content-center">
