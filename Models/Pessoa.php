@@ -47,6 +47,18 @@ class Pessoa implements Idados
 		]);
 	}
 
+	public function getId(){
+		return $this->id;
+	}
+
+	public function getNome(){
+		return $this->nome;
+	}
+
+	public function getTelefone(){
+		return $this->telefone;
+	}
+
 	// Inclui o conteúdo do Trait
 	use trait__get;
 }
