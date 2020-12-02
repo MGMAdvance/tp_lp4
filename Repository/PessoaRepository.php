@@ -93,7 +93,7 @@ class PessoaRepository
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
-            $stmt = $pdo->prepare('UPDATE pessoa SET nome=:nome, telefone=:tel WHERE id=:id');
+            $stmt = $pdo->prepare('UPDATE pessoas SET nome=:nome, telefone=:tel WHERE id=:id');
 
             $id = $pessoa->getId();
             $nome = $pessoa->getNome();
