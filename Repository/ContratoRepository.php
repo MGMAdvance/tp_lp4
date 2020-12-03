@@ -65,7 +65,7 @@ class ContratoRepository implements IContratoRepository
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
-            $stmt = $pdo->prepare('SELECT * FROM projetos WHERE id=:i');
+            $stmt = $pdo->prepare('SELECT * FROM contratos WHERE id=:i');
             $stmt->bindParam(':i', $id);
 
             $stmt->execute();

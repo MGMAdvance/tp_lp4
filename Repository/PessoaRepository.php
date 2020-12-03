@@ -44,7 +44,7 @@ class PessoaRepository implements IPessoaRepository
             $pessoas = [];
 
             foreach ($data as $v) {
-                array_push($pessoas, new Pessoa($v['id'], $v['nome'], $v['telefone'], null));
+                array_push($pessoas, new Pessoa($v['id'], $v['nome'], $v['telefone']));
             }
         } catch (PDOException $ex) {
             echo $ex->getMessage();
