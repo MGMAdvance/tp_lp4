@@ -23,7 +23,7 @@ class ProjetoRepository implements IProjetoRepository
             $descricao = $projeto->getDescricao();
             $orcamento = $projeto->getOrcamento();
 
-            $stmt = $pdo->prepare('INSERT INTO projetos (descricao,orcamento) VALUES (:descricao,:orcamento)');
+            $stmt = $pdo->prepare('INSERT INTO projetos (descricao,orcamento) VALUES (:descricao, :orcamento)');
             $stmt->bindParam(':descricao', $descricao);
             $stmt->bindParam(':orcamento', $orcamento);
 
@@ -74,9 +74,8 @@ class ProjetoRepository implements IProjetoRepository
 
             $pessoa = new Projeto(
                 $linha[0]['id'],
-                $linha[0]['nome'],
-                $linha[0]['telefone'],
-                null
+                $linha[0]['descricao'],
+                $linha[0]['orcamento']
             );
         } catch (PDOException $ex) {
 
