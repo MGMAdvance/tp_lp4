@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Projeto implements Idados
+class Contrato implements Idados
 {
 	protected $id;
 	protected $razaoSocial;
