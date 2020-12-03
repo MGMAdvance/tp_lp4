@@ -6,7 +6,7 @@ CREATE TABLE `pessoas` (
 
 CREATE TABLE `projetos` (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `desc` VARCHAR(200) NOT NULL,
+  `descricao` VARCHAR(200) NOT NULL,
   `orcamento` VARCHAR(200) NOT NULL
 );
 
@@ -15,11 +15,11 @@ CREATE TABLE `pessoa_projetos` (
   `projeto_id` INT
 );
 
-CREATE TABLE `contrato` (
+CREATE TABLE `contratos` (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `razao_social` VARCHAR(200) NOT NULL,
   `cnpj` VARCHAR(75) NOT NULL,
-  `qt_valor` double NOT NULL
+  `qt_valor` INT NOT NULL
 );
 
 ALTER TABLE `pessoa_projetos` ADD FOREIGN KEY (`pessoa_id`) REFERENCES `pessoas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

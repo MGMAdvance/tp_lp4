@@ -5,8 +5,10 @@ RewriteRule ^pessoas/?$ Views/pessoas [NC]
 # RewriteRule  ^pessoas/editar/(.+)$ Views/pessoas/editar.php?id=$1   [L]
 # RewriteRule ^([A-Za-z0-9]+)/^([A-Za-z0-9]+) pessoas/item=$1&season=$2 [QSA]
 
-RewriteRule ^projetos$ Views/projetos [NC]
+RewriteRule ^projetos/?$ Views/projetos [NC]
 # RewriteRule ^([A-Za-z0-9]+)/^([A-Za-z0-9]+) projetos/item=$1&season=$2 [QSA]
+
+RewriteRule ^contratos/?$ Views/contratos [NC]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

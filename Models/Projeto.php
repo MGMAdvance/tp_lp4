@@ -8,10 +8,10 @@ class Projeto implements Idados
 	protected $descricao;
 	protected $orcamento;
 
-	public function __construct($id, $desc, $orcamento)
+	public function __construct($id, $descricao, $orcamento)
 	{
 		$this->id = $id;
-		$this->descricao = $desc;
+		$this->descricao = $descricao;
 		$this->orcamento = $orcamento;
 	}
 
@@ -43,7 +43,7 @@ class Projeto implements Idados
 	}
 
 	public function getDescricao(){
-		return $this->desc;
+		return $this->descricao;
 	}
 
 	public function getOrcamento(){
