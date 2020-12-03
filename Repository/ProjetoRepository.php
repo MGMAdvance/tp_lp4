@@ -5,13 +5,13 @@ include 'IRepository.php';
 
 use \PDO;
 use \PDOException;
-use Models\Pessoa;
+use Models\Projeto;
 
 require 'config.php';
 
-class PessoaRepository implements IPessoaRepository
+class ProjetoRepository implements IProjetoRepository
 {
-    public static function insert(Pessoa $pessoa): void
+    public static function insert(Projeto $projeto): void
     {
         try {
             $pdo = new PDO(HOST, USER, PASS);
@@ -20,12 +20,12 @@ class PessoaRepository implements IPessoaRepository
 
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
-            $nome = $pessoa->getNome();
-            $telefone = $pessoa->getTelefone();
+            $descricao = $projeto->getDescricao();
+            $orcamento = $projeto->getOrcamento();
 
-            $stmt = $pdo->prepare('INSERT INTO pessoas (nome,telefone) VALUES (:nome,:telefone)');
-            $stmt->bindParam(':nome', $nome);
-            $stmt->bindParam(':telefone', $telefone);
+            $stmt = $pdo->prepare('INSERT INTO projetos (descricao,orcamento) VALUES (:descricao,:orcamento)');
+            $stmt->bindParam(':descricao', $descricao);
+            $stmt->bindParam(':orcamento', $orcamento);
 
             $stmt->execute();
         } catch (PDOException $ex) {
@@ -39,12 +39,12 @@ class PessoaRepository implements IPessoaRepository
         try {
             $pdo = new PDO(HOST, USER, PASS);
 
-            $data = $pdo->query("SELECT * FROM pessoas");
+            $data = $pdo->query("SELECT * FROM projetos");
 
-            $pessoas = [];
+            $projetos = [];
 
-            foreach ($data as $v) {
-                array_push($pessoas, new Pessoa($v['id'], $v['nome'], $v['telefone'], null));
+            foreach ($data as $row) {
+                array_push($projetos, new Projeto($row['id'], $row['descricao'], $row['orcamento']));
             }
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -52,10 +52,10 @@ class PessoaRepository implements IPessoaRepository
             $pdo = null;
         }
 
-        return $pessoas;
+        return $projetos;
     }
 
-    public static function getById($id): Pessoa
+    public static function getById($id): Projeto
     {
         try {
             $pdo = new PDO(HOST, USER, PASS);
@@ -63,7 +63,7 @@ class PessoaRepository implements IPessoaRepository
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
-            $stmt = $pdo->prepare('SELECT id, nome, telefone FROM pessoas WHERE id=:i');
+            $stmt = $pdo->prepare('SELECT * FROM projetos WHERE id=:i');
             $stmt->bindParam(':i', $id);
 
             $stmt->execute();
@@ -72,7 +72,7 @@ class PessoaRepository implements IPessoaRepository
 
             $linha = $stmt->fetchAll();
 
-            $pessoa = new Pessoa(
+            $pessoa = new Projeto(
                 $linha[0]['id'],
                 $linha[0]['nome'],
                 $linha[0]['telefone'],
@@ -87,7 +87,7 @@ class PessoaRepository implements IPessoaRepository
         return $pessoa;
     }
 
-    public static function update(Pessoa $pessoa): void
+    public static function update(Projeto $projeto): void
     {
         try {
             $pdo = new PDO(HOST, USER, PASS);
@@ -95,15 +95,15 @@ class PessoaRepository implements IPessoaRepository
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
-            $stmt = $pdo->prepare('UPDATE pessoas SET nome=:nome, telefone=:tel WHERE id=:id');
+            $stmt = $pdo->prepare('UPDATE projetos SET descricao=:descricao, orcamento=:orcamento WHERE id=:id');
 
-            $id = $pessoa->getId();
-            $nome = $pessoa->getNome();
-            $telefone = $pessoa->getTelefone();
+            $id = $projeto->getId();
+            $descricao = $projeto->getDescricao();
+            $orcamento = $projeto->getOrcamento();
 
             $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':nome', $nome);
-            $stmt->bindParam(':tel', $telefone);
+            $stmt->bindParam(':descricao', $descricao);
+            $stmt->bindParam(':orcamento', $orcamento);
 
             $stmt->execute();
         } catch (PDOException $pex) {
@@ -120,7 +120,7 @@ class PessoaRepository implements IPessoaRepository
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
-            $stmt = $pdo->prepare('DELETE FROM pessoas WHERE id=:id');
+            $stmt = $pdo->prepare('DELETE FROM projetos WHERE id=:id');
 
             $stmt->bindParam(':id', $id);
 
