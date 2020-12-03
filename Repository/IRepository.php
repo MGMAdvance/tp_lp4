@@ -25,9 +25,9 @@ interface IProjetoRepository{
 interface IPessoaProjetoRepository{
 	public static function insert(PessoaProjeto $pp): void;
     public static function update(PessoaProjeto $pp): void;
-    public static function delete($id): void;
+    public static function delete($pessoa, $projeto): void;
     public static function getAll();
-    public static function getById($id): PessoaProjeto;
+    public static function getById($pessoa, $projeto): PessoaProjeto;
 }
 
 interface IContratoRepository{

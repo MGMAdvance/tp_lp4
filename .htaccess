@@ -8,6 +8,8 @@ RewriteRule ^pessoas/?$ Views/pessoas [NC]
 RewriteRule ^projetos/?$ Views/projetos [NC]
 # RewriteRule ^([A-Za-z0-9]+)/^([A-Za-z0-9]+) projetos/item=$1&season=$2 [QSA]
 
+RewriteRule ^pp/?$ Views/pp [NC]
+
 RewriteRule ^contratos/?$ Views/contratos [NC]
 
 RewriteCond %{REQUEST_FILENAME} !-f

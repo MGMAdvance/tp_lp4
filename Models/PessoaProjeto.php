@@ -6,6 +6,8 @@ class PessoaProjeto implements Idados
 {
 	protected $pessoa;
 	protected $projeto;
+	protected $pessoaNome;
+	protected $projetoNome;
 
 	public function __construct($pessoa, $projeto)
 	{
@@ -40,6 +42,22 @@ class PessoaProjeto implements Idados
 
 	public function getProjeto(){
 		return $this->projeto;
+	}
+
+	public function getPessoaNome(){
+		return $this->pessoaNome;
+	}
+
+	public function getProjetoNome(){
+		return $this->projetoNome;
+	}
+
+	public function setPessoaNome($nome){
+		$this->pessoaNome = $nome;
+	}
+
+	public function setProjetoNome($nome){
+		$this->projetoNome = $nome;
 	}
 
 	use trait__get;
